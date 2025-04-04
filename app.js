@@ -94,9 +94,15 @@ document.addEventListener("DOMContentLoaded", () => {
     (matrList[i - 1][4] = parseFloat(permanencia.toFixed(2))), // Formata a permanência com 2 casas decimais --- Atualiza a permanência na lista
       (elements.BarInput.value = ""); //Limpa o campo de entrada do Leitor de Código de Barras
     elements.MaxPointsDisplay.innerHTML = `Matrícula: ${maxPoints}`;
-    elements.permanenciaDisplay.innerHTML = `Permanencia: ${parseFloat(
-      permanencia.toFixed(2)
-    )}`;
+    elements.permanenciaDisplay.innerHTML = `Permanencia: ${parseFloat(permanencia.toFixed(2))}`;
+    // Verifica se a permanência é menor que 45 e aplica o estilo
+    if (permanencia < 45) {
+      elements.permanenciaDisplay.style.color = "red"; // Define a cor do texto como vermelho
+      elements.permanenciaDisplay.style.fontSize = "3rem"; // Aumenta o tamanho da fonte
+    } else {
+      elements.permanenciaDisplay.style.color = ""; // Restaura a cor padrão
+      elements.permanenciaDisplay.style.fontSize = ""; // Restaura o tamanho padrão
+    }
     elements.entradaDisplay.innerHTML = `Entrada: ${momento.getHours()}:${momento.getMinutes()}:${momento.getSeconds()}`;
 
     tabela(matrList, i);

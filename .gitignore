@@ -40,3 +40,15 @@ versões antigas/
 build/
 dist/
 *.log
+
+# ---------------------------------------------------------------------------
+# Listas de alunos em .json: NAO vao para o GitHub.
+# Os .xlsx/.xls/.csv ja estao cobertos acima, mas o padrao antigo
+# "courseid_*_participants.json" nao casava com os nomes reais exportados do
+# Moodle ("courseid_28451_11abr26.json", "QUI318 lista alunos 16set26.json"),
+# e esses arquivos trazem nome, matricula e e-mail institucional dos alunos.
+# Regra ampla: nenhum .json na raiz do projeto, salvo os de configuracao.
+/*.json
+!/package.json
+!/package-lock.json
+!/.prettierrc.json

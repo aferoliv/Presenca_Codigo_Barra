@@ -25,7 +25,9 @@
         <div class="col-md-1">
           <label for="matricula" class="form-label mb-3">Matrícula</label>
           <input
-            type="number"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
             id="matricula"
             class="form-control"
             value=""
@@ -42,7 +44,6 @@
         </div>
         
         </div>
-      </div>
       <div class="row g-2 mb-2 align-items-center presence-clock-section">
         <div class="col-12">
           <div class="alert alert-light text-center clock-box mb-0">
@@ -62,7 +63,7 @@
                 class="btn btn-danger full-width-button"
                 enabled
               >
-                Carregar Lista Alunos (.xlsx/.json)
+                Carregar Lista Alunos (.csv/.xlsx/.json)
               </button>
             </div>
             <div class="col-6">
@@ -92,6 +93,17 @@
                 Salvar Resumo Permanência
               </button>
             </div>
+            <div class="col-12">
+              <button
+                type="button"
+                id="archived-sessions-button"
+                class="btn btn-outline-secondary full-width-button"
+                data-bs-toggle="modal"
+                data-bs-target="#archived-sessions-modal"
+              >
+                Sessões Anteriores
+              </button>
+            </div>
           </div>
           <!-- Session Info Display -->
           <div class="row g-2 mb-2 align-items-center">
@@ -106,7 +118,7 @@
             <table class="table mt-2">
               <thead>
                 <tr>
-                  <th colspan="7" class="text-center">Informações do Aluno</th>
+                  <th colspan="6" class="text-center">Informações do Aluno</th>
                 </tr>
                 <tr>
                   <th>ID</th>
@@ -130,7 +142,9 @@
           <label for="remove-line" class="form-label mb-0">Remover 1ª entrada</label>
           <p class="mb-1">Matrícula:</p>
           <input
-            type="number"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
             id="remove-line"
             class="form-control"
             value=""
@@ -147,6 +161,64 @@
         </div>
       </div>
 
+
+      <!-- Sessões arquivadas: baixar o log/resumo de uma aula passada ou apagá-la -->
+      <div
+        class="modal fade"
+        id="archived-sessions-modal"
+        tabindex="-1"
+        aria-labelledby="archived-sessions-title"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="archived-sessions-title">Sessões Anteriores</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+              <p class="text-muted archived-help">
+                As sessões finalizadas ficam guardadas no navegador por 60 dias.
+                Baixe o arquivo antes de apagar — apagar não tem volta.
+              </p>
+              <div class="table-responsive">
+                <table class="table table-sm table-hover align-middle archived-table">
+                  <thead>
+                    <tr>
+                      <th>Disciplina</th>
+                      <th>Data</th>
+                      <th>Início</th>
+                      <th>Duração</th>
+                      <th>Alunos</th>
+                      <th>Eventos</th>
+                      <th>Mín.</th>
+                      <th class="text-end">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody id="archived-sessions-body">
+                    <!-- preenchido por app.js -->
+                  </tbody>
+                </table>
+              </div>
+
+              <hr class="my-4" />
+
+              <h6 class="mb-1">Lista de alunos</h6>
+              <p class="text-muted archived-help" id="student-list-info">—</p>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-danger"
+                data-acao="apagar-listas"
+              >
+                Apagar listas de alunos
+              </button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Footer section -->
       <footer class="text-bg-dark text-center py-1 mt-2">
